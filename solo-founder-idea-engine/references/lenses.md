@@ -114,3 +114,40 @@ payments rail, a digital identity system, a logistics network, a data standard, 
 **A real find:** the infrastructure, when it went live, its adoption today, and what is missing
 above it.
 **Fails when:** adoption is near zero for a reason. Find out whether anyone actually wants to use it.
+
+## 13. Exists elsewhere, not here
+A product, service or business model that is ordinary in another country and absent, or
+present only in a bad form, in India. The oldest way to start a company, and the most
+commonly botched.
+
+**Search:** category leaders in the US, UK, China, Brazil, Indonesia and the Gulf, then
+check for an Indian equivalent. Look at what Y Combinator funded three years ago and what
+of it has no Indian counterpart. Read foreign trade press for categories you have never
+heard of. Compare "top 20 apps" lists across countries.
+
+**A real find:** the thing, where it works, how long it has worked there, what it costs
+there, and evidence that no Indian version exists or that the existing ones are bad.
+
+**The question that separates a real find from a bad one:** *what structural precondition
+made this work over there, and does India have it yet?* Something works in the US because
+labour is expensive, addresses are standardised, card penetration is universal, and
+customers will pay a subscription. Some of those now hold in India and some never will.
+Name the precondition explicitly and say whether it is present, arriving, or absent.
+
+- **Absent:** a service that replaces cheap manual labour is worth far less where labour
+  is cheap. Do not transplant it.
+- **Arriving:** the interesting case. UPI made small-ticket payments free, ONDC changed
+  discovery, cheap data changed who is online, GST created a digital paper trail for
+  millions of small firms. Something that failed in India five years ago may work now for
+  a reason you can name and date.
+- **Present:** then ask why nobody has done it. Usually someone tried. Find them.
+
+**Fails when:** you list a foreign company and add "for India". That is not an idea, it is
+a mapping. The idea is the specific Indian buyer, the specific precondition that recently
+became true, and what has to be different here — usually the price point, the channel, and
+how much hand-holding the first hundred customers need.
+
+**Also run it in reverse.** Things India does that the world does not: UPI-scale real-time
+payments, dabbawala-grade physical routing, jugaad repair economies, an enormous multilingual
+informal sector. Occasionally the export is the opportunity, and an Indian founder is the
+natural person to build it.

@@ -29,13 +29,16 @@ Read `references/founder-profile.md` first. It says where the founder is, which 
 can actually reach, and in what currency. An idea they cannot sell into is not an idea, and
 web search skews heavily American, so this is the constraint most likely to be violated.
 
-Read `references/lenses.md` for the twelve sources of opportunity and how to search each one.
+Read `references/lenses.md` for the thirteen sources of opportunity and how to search each one.
 Read `references/output-format.md` for the required shape of every idea.
 Read `references/ledger.md` before you emit anything, and append to it after.
 
 Each run:
 
 1. **Pick 3 lenses you have not used in the last two runs.** The ledger records which.
+   Lens 13 (exists elsewhere, not here) is worth reaching for often — it is the one best
+   suited to an Indian founder — but never more than one idea per run from it, or the
+   output becomes a list of foreign companies with "for India" appended.
 2. **Search for a real, dated change under each.** Prefer regulation with a compliance date,
    published price data, company announcements, and public complaint data. If a lens turns up
    nothing concrete this run, drop it and take another. Never fabricate a change to fill a slot.

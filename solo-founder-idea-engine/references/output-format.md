@@ -52,6 +52,9 @@ Close with three lines and nothing more:
 
 1. Which lenses you used this run and which you passed over for lack of a concrete change.
 2. Which idea you would personally start on Monday, and why that one.
+   Name the **domain** it sits in and say whether the domain itself is worth going deeper
+   on — one good idea in a rich domain beats five scattered across unrelated ones, and a
+   founder who keeps returning to the same domain compounds what they know about it.
 3. The handoff: these are unvalidated starting points — run the chosen one through the Business
    Idea Validator before spending a rupee or a week.
 
