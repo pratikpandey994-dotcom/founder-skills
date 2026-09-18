@@ -31,6 +31,17 @@ A flag is not a rejection. State what the flag costs: "needs a co-founder who ca
 about Rs X of stock before the first sale". Two or more flags means say plainly that this is not
 a one-person business as described, and give the version that is.
 
+**Execution path** — three lines, per `references/execution.md`:
+- *Made by:* who manufactures or delivers it, and their minimum order or engagement. For
+  software, what has to be built and in how many weeks.
+- *Reaches the buyer via:* the specific channel, and what that channel takes.
+- *Margin chain:* landed or delivered cost → your price → what the customer pays. If anyone
+  in between takes a cut, show it. If the numbers do not leave a business, say so.
+
+**Before the first rupee** — what must be bought or committed before any revenue arrives,
+and whether the founder can afford it. This is the question that ends most ideas at this
+capital level; answer it honestly rather than optimistically.
+
 **First money** — what exactly you would sell first, to whom, at what price, within how many
 weeks. This is the smallest thing someone would pay for, not the product.
 
@@ -51,6 +62,8 @@ location, stage, and what you'd sell first]"`
 Close with three lines and nothing more:
 
 1. Which lenses you used this run and which you passed over for lack of a concrete change.
+   Then the **cut list**: every candidate that did not survive pass two, one line each, with
+   the test that killed it.
 2. Which idea you would personally start on Monday, and why that one.
    Name the **domain** it sits in and say whether the domain itself is worth going deeper
    on — one good idea in a rich domain beats five scattered across unrelated ones, and a

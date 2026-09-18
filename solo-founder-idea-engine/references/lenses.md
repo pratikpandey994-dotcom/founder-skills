@@ -151,3 +151,63 @@ how much hand-holding the first hundred customers need.
 payments, dabbawala-grade physical routing, jugaad repair economies, an enormous multilingual
 informal sector. Occasionally the export is the opportunity, and an Indian founder is the
 natural person to build it.
+
+## 14. Macroeconomic shift
+Money got more expensive, or cheaper. A currency moved. Incomes crossed a threshold.
+Credit dried up or opened. These change what people buy long before anyone writes about it
+as a trend.
+
+**Search:** RBI policy statements and credit growth data, CPI and WPI prints, rupee against
+the dollar over three years, consumption surveys, GST collection by category, two-wheeler
+and FMCG volume data — those two are the clearest read on whether ordinary households are
+under pressure.
+
+**A real find:** a named macro variable, its level then and now, and a *buying behaviour*
+that changed because of it.
+
+Concretely, in India: a weaker rupee makes imported inputs dearer and import substitution
+suddenly viable. Expensive credit starves small firms of working capital, so anything that
+shortens their cash cycle gets bought fast. Inflation pushes households to downtrade and to
+smaller pack sizes. And GDP per capita crossing a threshold makes an entire category
+affordable to fifty million more people for the first time.
+
+**Fails when:** you write "the economy is growing". That is not a find. The find is the
+specific purchase that started or stopped.
+
+## 15. Consumer psychology shift
+What people want, fear, signal or trust has moved. Status markers relocate, trust in a
+category collapses, attention reallocates, a private worry becomes a public one.
+
+**Search:** category volume data rather than opinion, search-trend shifts, what changed on
+retail shelves, the language in recent reviews versus older ones, what regulators started
+warning about, what insurers started covering.
+
+**A real find:** a named belief or preference that measurably moved, evidenced by people
+*spending* differently.
+
+In India recently: protein and label-reading as mainstream rather than gym-goer behaviour,
+sleep treated as a health category, adulteration fear driving willingness to pay for
+provenance, regional-language content as identity rather than compromise, and small-town
+aspiration no longer following metro taste.
+
+**Fails when:** it is a vibe. Sentiment is not evidence. Find the spend.
+
+## 16. AI changed the cost of delivery, not the pitch
+A service that was bound by human hours now has a different cost structure, so it can be
+priced differently, packaged differently, or sold to customers who could never afford it.
+The buyer does not care that it is AI. They care that it now costs a tenth as much.
+
+**Search:** what agencies and firms bill hourly for, what is priced per-seat because it was
+per-person, what small businesses simply go without because the professional version was
+out of reach.
+
+**A real find:** the task, what it cost when a person did it, what it costs now, and a buyer
+with an *existing budget line* for the old way.
+
+**The counter-trend is the better half of this lens.** As machine-generated output floods
+every channel, whatever proves something is genuine gets more valuable: provenance,
+verification, certified-human work, physical presence, real relationships, audited records.
+The scarce thing in an abundant market is proof. Look there too.
+
+**Fails when:** AI is the product. If the sentence needs the word "AI" to sound like a
+business, it is not one. AI is how you deliver; it is never why they pay.

@@ -25,33 +25,60 @@ months of enterprise sales, a two-sided cold start, or a factory is not an idea 
 
 # HOW TO GENERATE
 
-Read `references/founder-profile.md` first. It says where the founder is, which markets they
-can actually reach, and in what currency. An idea they cannot sell into is not an idea, and
-web search skews heavily American, so this is the constraint most likely to be violated.
+Read `references/founder-profile.md` first — who the founder is, what they can reach, what
+they can afford. An idea they cannot sell into is not an idea, and web search skews heavily
+American, so this is the constraint most often violated.
 
-Read `references/lenses.md` for the thirteen sources of opportunity and how to search each one.
-Read `references/output-format.md` for the required shape of every idea.
-Read `references/ledger.md` before you emit anything, and append to it after.
+Then `references/lenses.md` (sixteen sources of opportunity), `references/execution.md`
+(who makes it and how it reaches a buyer), and `references/output-format.md`.
+Read `references/ledger.md` before emitting anything, and append to it after.
 
-Each run:
+**Generate wide, then cut.** Producing five ideas directly gets you the five that surfaced
+first, which is not the same as the five best. Work in two passes.
 
-1. **Pick 3 lenses you have not used in the last two runs.** The ledger records which.
-   Lens 13 (exists elsewhere, not here) is worth reaching for often — it is the one best
-   suited to an Indian founder — but never more than one idea per run from it, or the
-   output becomes a list of foreign companies with "for India" appended.
-2. **Search for a real, dated change under each.** Prefer regulation with a compliance date,
-   published price data, company announcements, and public complaint data. If a lens turns up
-   nothing concrete this run, drop it and take another. Never fabricate a change to fill a slot.
-3. **For each change, find who it hurts** — a specific role, in a specific place, doing a
-   specific thing today that costs them money or hours.
-4. **Produce 5 ideas** in the required format, subject to the coverage rules below.
-5. **Check reachability.** Every idea must pass the table in `references/founder-profile.md`,
-   and at least 3 of the 5 must be reachable in person rather than only sellable remotely.
-   State which row each idea falls under.
-6. **Check every idea against the ledger.** If it repeats an entry in substance, discard it and
-   generate another. Near-duplicates of your own past ideas are the main failure mode of running
-   this repeatedly.
-7. **Append the 5 to the ledger** with title, lens, segment, horizon and date.
+## Pass one — widen
+
+1. **Pick 5 lenses not used in the last two runs.** The ledger records which. Lens 13
+   (exists elsewhere, not here) suits an Indian founder particularly well, but never take
+   more than one surviving idea from it, or the output becomes foreign companies with
+   "for India" appended.
+2. **Search for real, dated changes under each.** Regulation with a compliance date,
+   published price data, company announcements, consumption and complaint data. If a lens
+   turns up nothing concrete, drop it and take another. Never invent a change to fill a slot.
+3. **List at least 15 candidates**, one line each: the change, and who it hurts. Do not
+   develop them. Range matters more than polish here — include the ones you suspect are bad,
+   because the comparison is what makes the good ones visible.
+
+## Pass two — cut to five
+
+4. **Score every candidate against these, and cut hard:**
+
+   | Test | Cut if |
+   |---|---|
+   | Is the change real, dated and sourced? | It is a trend, not an event |
+   | Can you name one specific person who hurts? | The buyer is a category |
+   | Is there an existing budget line for the old way? | This needs someone to start spending on a new thing |
+   | Can it be built and delivered for Rs 1–3 lakh? | It needs capital the founder does not have |
+   | Can the founder reach that buyer? | It fails the reachability table |
+   | Is there a kill signal checkable this week? | You cannot think of one |
+
+   **The budget-line test cuts the most and matters the most.** Selling a cheaper way to do
+   something a buyer already pays for is a different business from persuading them to spend
+   on something new. The first is achievable alone; the second usually is not.
+
+5. **Develop the five survivors** in the required format, including a full execution path:
+   who makes it, how it reaches the buyer, and what is left after everyone takes their cut.
+   An idea with no answer there is not finished — say so plainly rather than dressing it up.
+6. **Check reachability.** Every idea passes the table in `references/founder-profile.md`,
+   and at least 3 of 5 must be reachable in person, not merely sellable remotely. State
+   which row each falls under.
+7. **Check against the ledger** for repetition in substance, not just in title. Near-
+   duplicates of past runs are the main failure mode of running this repeatedly. Replace
+   any repeat from the cut list rather than inventing something new.
+8. **Append the five to the ledger** with title, lens, segment, horizon and date.
+9. **Show the cut list** — the candidates that did not survive, one line each, with which
+   test killed them. This is not filler. It shows the ground was actually covered, and a
+   candidate cut for capital today may be viable next year.
 
 ## Coverage rules for each run of 5
 
