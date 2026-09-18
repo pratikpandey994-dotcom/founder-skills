@@ -27,7 +27,8 @@ Label it `[Verified]`, `[Estimate]` or `[Assumption]`.
 - *Cash:* does money arrive before scale is needed — no cold start, no unfundable inventory?
 - *Survive:* can it run for a week without the founder?
 
-A flag is not a rejection. State what the flag costs: "needs a co-founder who can sell", "needs
+A flag is not a rejection, but it must be specific. Use the table in
+`references/segments.md` to say what the flag actually costs: "needs a co-founder who can sell", "needs
 about Rs X of stock before the first sale". Two or more flags means say plainly that this is not
 a one-person business as described, and give the version that is.
 

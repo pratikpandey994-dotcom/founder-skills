@@ -58,5 +58,13 @@ jobs:
             grep -oE 'references/[a-z-]+\.md' "$f" | sort -u | while read -r r; do
               [ -f "$s/$r" ] || { echo "$f references missing $r"; exit 1; }
             done || fail=1
+            # and every file must be reachable - an unreferenced reference is dead weight
+            # the model never loads, which is invisible until someone checks
+            for ref in "$s"/references/*.md; do
+              base="references/$(basename "$ref")"
+              if ! grep -qE "$base" "$f" "$s"/references/*.md; then
+                echo "$ref is orphaned - nothing references it"; fail=1
+              fi
+            done
           done
           exit $fail

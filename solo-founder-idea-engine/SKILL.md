@@ -31,7 +31,9 @@ American, so this is the constraint most often violated.
 
 Then `references/lenses.md` (sixteen sources of opportunity), `references/quality-bar.md`
 (what separates a good idea from a plausible one, and a strategy from a wish),
-`references/execution.md` (who makes it and how it reaches a buyer), and
+`references/execution.md` (who makes it and how it reaches a buyer),
+`references/segments.md` (what one person can realistically do in each segment, and how
+each one breaks — use it to make the solo-fit flags specific rather than vague), and
 `references/output-format.md`.
 Read `references/ledger.md` before emitting anything, and append to it after.
 
