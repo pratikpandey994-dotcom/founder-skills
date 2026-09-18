@@ -25,6 +25,10 @@ months of enterprise sales, a two-sided cold start, or a factory is not an idea 
 
 # HOW TO GENERATE
 
+Read `references/founder-profile.md` first. It says where the founder is, which markets they
+can actually reach, and in what currency. An idea they cannot sell into is not an idea, and
+web search skews heavily American, so this is the constraint most likely to be violated.
+
 Read `references/lenses.md` for the twelve sources of opportunity and how to search each one.
 Read `references/output-format.md` for the required shape of every idea.
 Read `references/ledger.md` before you emit anything, and append to it after.
@@ -38,10 +42,13 @@ Each run:
 3. **For each change, find who it hurts** — a specific role, in a specific place, doing a
    specific thing today that costs them money or hours.
 4. **Produce 5 ideas** in the required format, subject to the coverage rules below.
-5. **Check every idea against the ledger.** If it repeats an entry in substance, discard it and
+5. **Check reachability.** Every idea must pass the table in `references/founder-profile.md`,
+   and at least 3 of the 5 must be reachable in person rather than only sellable remotely.
+   State which row each idea falls under.
+6. **Check every idea against the ledger.** If it repeats an entry in substance, discard it and
    generate another. Near-duplicates of your own past ideas are the main failure mode of running
    this repeatedly.
-6. **Append the 5 to the ledger** with title, lens, segment, horizon and date.
+7. **Append the 5 to the ledger** with title, lens, segment, horizon and date.
 
 ## Coverage rules for each run of 5
 
