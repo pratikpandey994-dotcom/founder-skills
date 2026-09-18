@@ -1,0 +1,62 @@
+name: check outputs
+
+# Runs the mechanical checker on any validator output committed to the repo.
+# No API key and no model calls - every check here is arithmetic, rule-following,
+# structure, labelling, vocabulary and whether cited URLs resolve. Free on public repos.
+
+on:
+  push:
+    paths: ['eval/**', 'business-idea-validator/**', 'solo-founder-idea-engine/**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+
+      - name: Check every committed eval result
+        run: |
+          shopt -s nullglob
+          results=(eval/results/*/*.md)
+          if [ ${#results[@]} -eq 0 ]; then
+            echo "No eval results committed yet - nothing to check."
+            echo "Run ./eval/run_eval.sh locally and commit eval/results/ to enable this."
+            exit 0
+          fi
+          fail=0
+          for f in "${results[@]}"; do
+            case=$(basename "$f" .md)
+            expect=$(sed -n 's/^expect: //p' "eval/cases/$case.md" 2>/dev/null | head -1)
+            echo "::group::$f"
+            if [ -n "$expect" ]; then
+              python3 eval/check_output.py "$f" --expect "$expect" --check-urls || fail=1
+            else
+              python3 eval/check_output.py "$f" --check-urls || fail=1
+            fi
+            echo "::endgroup::"
+          done
+          exit $fail
+
+      - name: Skill files are well formed
+        run: |
+          fail=0
+          for s in business-idea-validator solo-founder-idea-engine; do
+            f="$s/SKILL.md"
+            [ -f "$f" ] || { echo "missing $f"; fail=1; continue; }
+            head -1 "$f" | grep -q '^---$' || { echo "$f: no frontmatter"; fail=1; }
+            n=$(sed -n 's/^name: //p' "$f" | head -1)
+            d=$(sed -n 's/^description: //p' "$f" | head -1)
+            [ ${#n} -le 64 ]  || { echo "$f: name ${#n} chars, max 64"; fail=1; }
+            [ ${#d} -le 200 ] || { echo "$f: description ${#d} chars, max 200"; fail=1; }
+            [ -n "$d" ] || { echo "$f: empty description"; fail=1; }
+            echo "$s: name ${#n}/64, description ${#d}/200"
+            # every referenced file must exist
+            grep -oE 'references/[a-z-]+\.md' "$f" | sort -u | while read -r r; do
+              [ -f "$s/$r" ] || { echo "$f references missing $r"; exit 1; }
+            done || fail=1
+          done
+          exit $fail
