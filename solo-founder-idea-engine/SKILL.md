@@ -29,8 +29,10 @@ Read `references/founder-profile.md` first — who the founder is, what they can
 they can afford. An idea they cannot sell into is not an idea, and web search skews heavily
 American, so this is the constraint most often violated.
 
-Then `references/lenses.md` (sixteen sources of opportunity), `references/execution.md`
-(who makes it and how it reaches a buyer), and `references/output-format.md`.
+Then `references/lenses.md` (sixteen sources of opportunity), `references/quality-bar.md`
+(what separates a good idea from a plausible one, and a strategy from a wish),
+`references/execution.md` (who makes it and how it reaches a buyer), and
+`references/output-format.md`.
 Read `references/ledger.md` before emitting anything, and append to it after.
 
 **Generate wide, then cut.** Producing five ideas directly gets you the five that surfaced
@@ -66,17 +68,20 @@ first, which is not the same as the five best. Work in two passes.
    something a buyer already pays for is a different business from persuading them to spend
    on something new. The first is achievable alone; the second usually is not.
 
-5. **Develop the five survivors** in the required format, including a full execution path:
+5. **Score every survivor against `references/quality-bar.md`** — eight dimensions out of
+   40 — and rank them. If two candidates are close, the one with an existing budget line
+   wins; that dimension predicts solo success better than any other.
+6. **Develop the five survivors** in the required format, including a full execution path:
    who makes it, how it reaches the buyer, and what is left after everyone takes their cut.
    An idea with no answer there is not finished — say so plainly rather than dressing it up.
-6. **Check reachability.** Every idea passes the table in `references/founder-profile.md`,
+7. **Check reachability.** Every idea passes the table in `references/founder-profile.md`,
    and at least 3 of 5 must be reachable in person, not merely sellable remotely. State
    which row each falls under.
-7. **Check against the ledger** for repetition in substance, not just in title. Near-
+8. **Check against the ledger** for repetition in substance, not just in title. Near-
    duplicates of past runs are the main failure mode of running this repeatedly. Replace
    any repeat from the cut list rather than inventing something new.
-8. **Append the five to the ledger** with title, lens, segment, horizon and date.
-9. **Show the cut list** — the candidates that did not survive, one line each, with which
+9. **Append the five to the ledger** with title, lens, segment, horizon and date.
+10. **Show the cut list** — the candidates that did not survive, one line each, with which
    test killed them. This is not filler. It shows the ground was actually covered, and a
    candidate cut for capital today may be viable next year.
 

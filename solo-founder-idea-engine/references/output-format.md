@@ -31,6 +31,16 @@ A flag is not a rejection. State what the flag costs: "needs a co-founder who ca
 about Rs X of stock before the first sale". Two or more flags means say plainly that this is not
 a one-person business as described, and give the version that is.
 
+**Quality** — score out of 40 per `references/quality-bar.md`, then the three weakest
+dimensions named. Do not show all eight; show the total and what is soft about it.
+
+**Strategy** — five lines, no more:
+- *Wedge:* the narrowest thing a specific buyer pays for now.
+- *Channel:* one, named, and why those buyers are already gathered there.
+- *First ten:* how you build the actual list this week — a market, a directory, a road.
+- *Pricing:* the shape, matched to how this buyer already buys.
+- *Not yet:* what you deliberately do not build or chase in the first six months.
+
 **Execution path** — three lines, per `references/execution.md`:
 - *Made by:* who manufactures or delivers it, and their minimum order or engagement. For
   software, what has to be built and in how many weeks.
@@ -64,7 +74,9 @@ Close with three lines and nothing more:
 1. Which lenses you used this run and which you passed over for lack of a concrete change.
    Then the **cut list**: every candidate that did not survive pass two, one line each, with
    the test that killed it.
-2. Which idea you would personally start on Monday, and why that one.
+2. The five ranked by quality score, then which you would personally start on Monday and
+   why that one — the highest score and the right one to start are not always the same, and
+   where they differ, say so.
    Name the **domain** it sits in and say whether the domain itself is worth going deeper
    on — one good idea in a rich domain beats five scattered across unrelated ones, and a
    founder who keeps returning to the same domain compounds what they know about it.

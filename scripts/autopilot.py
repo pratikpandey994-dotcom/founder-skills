@@ -17,7 +17,10 @@ CLAUDE   = "/Users/pratikpandey/.local/bin/claude"
 DEADLINE = datetime.now().replace(hour=14, minute=0, second=0, microsecond=0)
 LOG      = f"{REPO}/runs/autopilot-{datetime.now():%Y-%m-%d}.log"
 
-PROFILES = {"default": "/Users/pratikpandey/.claude",
+# None means "unset CLAUDE_CONFIG_DIR" - the default profile keeps its config at
+# ~/.claude.json in the home directory, not inside ~/.claude/, so pointing the variable
+# at that folder yields "Not logged in".
+PROFILES = {"default": None,
             "cla1":    "/Users/pratikpandey/.claude-cla1"}
 blocked  = {p: None for p in PROFILES}          # profile -> datetime it frees up
 
@@ -44,7 +47,11 @@ def parse_reset(text):
 
 def run(profile, prompt):
     """-> (ok, text). ok=False with 'LIMIT' text means the window is exhausted."""
-    env = dict(os.environ, CLAUDE_CONFIG_DIR=PROFILES[profile])
+    env = dict(os.environ)
+    if PROFILES[profile] is None:
+        env.pop("CLAUDE_CONFIG_DIR", None)
+    else:
+        env["CLAUDE_CONFIG_DIR"] = PROFILES[profile]
     try:
         p = subprocess.run([CLAUDE, "-p", prompt, "--output-format", "json",
                             "--allowedTools", *TOOLS],
@@ -143,7 +150,12 @@ while datetime.now() < DEADLINE:
 
     queue.pop(0)
     if not ok:
-        log(f"{task['id']} failed: {text[:160]}")
+        task["tries"] = task.get("tries", 0) + 1
+        if task["tries"] < 2:
+            log(f"{task['id']} failed ({text[:110]}) - retrying once later")
+            queue.append(task)
+        else:
+            log(f"{task['id']} failed twice, dropping: {text[:140]}")
         continue
 
     os.makedirs(os.path.dirname(task["out"]), exist_ok=True)
