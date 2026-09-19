@@ -22,32 +22,21 @@ if [ "$now_epoch" -ge "$end_epoch" ]; then
   say "past $END - stopping autopilot and removing cron entry"
   pkill -f autopilot.py 2>/dev/null
   pkill -f "caffeinate -is" 2>/dev/null
+  launchctl unload ~/Library/LaunchAgents/com.pratik.founder-autopilot.plist 2>/dev/null
   launchctl unload ~/Library/LaunchAgents/com.pratik.founder-supervisor.plist 2>/dev/null
-  say "launchd agent unloaded, nothing will fire tomorrow"
+  say "both agents unloaded, nothing will fire tomorrow"
   exit 0
 fi
 
-# 1. keep the worker alive
-if pgrep -f autopilot.py > /dev/null; then
-  say "autopilot alive (pid $(pgrep -f autopilot.py | head -1))"
+# 1. the autopilot is its own launchd agent with KeepAlive, so launchd restarts
+#    it on a crash. A child spawned from here would be reaped when this script
+#    exits, which is exactly how the previous attempt died.
+if launchctl list | grep -q com.pratik.founder-autopilot; then
+  say "autopilot agent loaded$(pgrep -f autopilot.py >/dev/null && echo ' and running' || echo ' but not running - launchd will restart it')"
 else
-  cd "$REPO" || exit 1
-  nohup python3 -u scripts/autopilot.py >> runs/autopilot-console.log 2>&1 &
-  sleep 3
-  APID=$(pgrep -f autopilot.py | head -1)
-  if [ -n "$APID" ]; then
-    nohup caffeinate -is -w "$APID" >/dev/null 2>&1 &
-    say "autopilot was down - restarted as pid $APID, caffeinate attached"
-  else
-    say "RESTART FAILED - autopilot did not come up"
-  fi
+  launchctl load ~/Library/LaunchAgents/com.pratik.founder-autopilot.plist 2>/dev/null
+  say "autopilot agent was missing - loaded it"
 fi
-
-# 2. keep the machine awake even if the caffeinate died separately
-pgrep -f "caffeinate -is" > /dev/null || {
-  APID=$(pgrep -f autopilot.py | head -1)
-  [ -n "$APID" ] && { nohup caffeinate -is -w "$APID" >/dev/null 2>&1 & say "re-attached caffeinate"; }
-}
 
 # 3. hygiene and auto-fix, once an hour on the :00 tick
 if [ "$(date +%M)" -lt 30 ]; then
