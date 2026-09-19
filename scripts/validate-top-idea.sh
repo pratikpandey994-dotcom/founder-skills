@@ -8,7 +8,7 @@
 # Does not push — review before publishing anything.
 
 set -u
-REPO=/Users/pratikpandey/Downloads/founder-skills
+REPO=/Users/pratikpandey/founder-skills
 CLAUDE=/Users/pratikpandey/.local/bin/claude
 STAMP=$(date +%Y-%m-%d)
 LOG="$REPO/runs/$STAMP-validation.md"

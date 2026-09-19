@@ -4,7 +4,7 @@
 # starting after that profile's 05:40 reset. Nothing repeats tomorrow.
 
 set -u
-REPO=/Users/pratikpandey/Downloads/founder-skills
+REPO=/Users/pratikpandey/founder-skills
 LOG="$REPO/runs/window-$(date +%Y-%m-%d).log"
 mkdir -p "$REPO/runs"
 

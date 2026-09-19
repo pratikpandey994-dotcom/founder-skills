@@ -7,7 +7,7 @@
 
 set -u
 N=${1:?case number required}
-REPO=/Users/pratikpandey/Downloads/founder-skills
+REPO=/Users/pratikpandey/founder-skills
 CLAUDE=/Users/pratikpandey/.local/bin/claude
 CFG=${CFG:-/Users/pratikpandey/.claude}          # default profile
 OUT="$REPO/eval/results/$(date +%Y-%m-%d)"

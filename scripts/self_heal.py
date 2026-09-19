@@ -20,7 +20,7 @@ Run:  python3 scripts/self_heal.py [--dry-run]
 import re, os, sys, json, subprocess, urllib.request
 from datetime import datetime
 
-REPO  = "/Users/pratikpandey/Downloads/founder-skills"
+REPO  = "/Users/pratikpandey/founder-skills"
 SKILLS = ["solo-founder-idea-engine", "business-idea-validator"]
 LOG   = f"{REPO}/runs/self-heal-{datetime.now():%Y-%m-%d}.log"
 LOCK  = f"{REPO}/runs/.self-heal.lock"

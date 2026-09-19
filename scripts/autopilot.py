@@ -12,7 +12,7 @@ are blocked. Work resumes automatically the moment a window reopens.
 import json, re, subprocess, sys, time, os
 from datetime import datetime, timedelta
 
-REPO     = "/Users/pratikpandey/Downloads/founder-skills"
+REPO     = "/Users/pratikpandey/founder-skills"
 CLAUDE   = "/Users/pratikpandey/.local/bin/claude"
 DEADLINE = datetime.now().replace(hour=14, minute=0, second=0, microsecond=0)
 LOG      = f"{REPO}/runs/autopilot-{datetime.now():%Y-%m-%d}.log"
@@ -100,75 +100,93 @@ ENGINE_PROMPT = (
 def engine_task(i):
     out = f"{REPO}/runs/{datetime.now():%Y-%m-%d}-ideas-{i}.md"
     return {"id": f"engine-{i}", "prompt": ENGINE_PROMPT, "out": out,
-            "prefer": "cla1", "expect": "", "check": False, "strict": False}
+            "prefer": "cla1", "expect": "", "check": False, "strict": True}
 
 queue = [t for t in (eval_task(n) for n in range(1, 7)) if t]
 queue.insert(0, engine_task(2))          # cla1 is free now; default is limited until 05:42
 queue.insert(5, engine_task(3))          # a second engine run once the profile rotates
 extra = 3
 
-def pick_profile(prefer, strict=False):
-    now = datetime.now()
-    order = [prefer] if strict else [prefer] + [p for p in PROFILES if p != prefer]
-    for p in order:
-        if blocked[p] is None or blocked[p] <= now:
-            return p
-    return None
+import threading
 
-log(f"autopilot up, {len(queue)} queued, deadline {DEADLINE:%H:%M}")
+qlock   = threading.Lock()
+extra   = 3
+stop_ev = threading.Event()
 
-while datetime.now() < DEADLINE:
-    if not queue:                                        # keep working
-        queue.append(engine_task(extra)); extra += 1
-        log("queue empty, added another engine run")
+def take(profile):
+    """First queued task this profile is allowed to run."""
+    global extra
+    with qlock:
+        for i, t in enumerate(queue):
+            if t.get("strict") and t["prefer"] != profile:
+                continue
+            return queue.pop(i)
+        if profile == "cla1":              # keep cla1 busy; evals are finite
+            t = engine_task(extra); extra += 1
+            log("queue empty for cla1, adding another engine run")
+            return t
+        return None
 
-    task = queue[0]
-    prof = pick_profile(task["prefer"], task.get("strict", False))
-
-    if prof is None:
-        movable = next((i for i, t in enumerate(queue)
-                        if i and pick_profile(t["prefer"], t.get("strict", False))), None)
-        if movable:
-            queue.insert(0, queue.pop(movable))
-            log(f"{task['id']} waiting on {task['prefer']}, running {queue[0]['id']} meanwhile")
+def worker(profile):
+    while not stop_ev.is_set() and datetime.now() < DEADLINE:
+        b = blocked[profile]
+        if b and b > datetime.now():
+            secs = min((b - datetime.now()).total_seconds(),
+                       (DEADLINE - datetime.now()).total_seconds())
+            if secs <= 0: break
+            log(f"{profile} blocked, sleeping {int(secs/60)}m until {b:%H:%M}")
+            stop_ev.wait(secs + 5)
             continue
-        nxt = min(b for b in blocked.values() if b)
-        wake = min(nxt, DEADLINE)
-        secs = (wake - datetime.now()).total_seconds()
-        if secs <= 0: break
-        log(f"both profiles blocked, sleeping {int(secs/60)}m until {wake:%H:%M}")
-        time.sleep(secs + 5)
-        continue
 
-    log(f"running {task['id']} on {prof}")
-    ok, text = run(prof, task["prompt"])
+        task = take(profile)
+        if task is None:
+            log(f"{profile}: nothing left to do")
+            stop_ev.wait(300)
+            continue
 
-    if not ok and text.startswith("LIMIT"):
-        blocked[prof] = parse_reset(text)
-        log(f"{prof} limit reached, free at {blocked[prof]:%H:%M} - requeueing {task['id']}")
-        continue                                          # task stays at queue head
+        log(f"running {task['id']} on {profile}")
+        ok, text = run(profile, task["prompt"])
 
-    queue.pop(0)
-    if not ok:
-        task["tries"] = task.get("tries", 0) + 1
-        if task["tries"] < 2:
-            log(f"{task['id']} failed ({text[:110]}) - retrying once later")
-            queue.append(task)
-        else:
-            log(f"{task['id']} failed twice, dropping: {text[:140]}")
-        continue
+        if not ok and text.startswith("LIMIT"):
+            blocked[profile] = parse_reset(text)
+            log(f"{profile} limit reached, free at {blocked[profile]:%H:%M} - requeueing {task['id']}")
+            with qlock:
+                queue.insert(0, task)
+            continue
 
-    os.makedirs(os.path.dirname(task["out"]), exist_ok=True)
-    open(task["out"], "w").write(text)
-    log(f"{task['id']} ok -> {os.path.basename(task['out'])} ({len(text.split())} words)")
+        if not ok:
+            task["tries"] = task.get("tries", 0) + 1
+            if task["tries"] < 2:
+                log(f"{task['id']} failed ({text[:100]}) - retrying later")
+                with qlock: queue.append(task)
+            else:
+                log(f"{task['id']} failed twice, dropping: {text[:130]}")
+            continue
 
-    if task["check"]:
-        cmd = ["python3", f"{REPO}/eval/check_output.py", task["out"]]
-        if task["expect"]: cmd += ["--expect", task["expect"]]
-        r = subprocess.run(cmd, capture_output=True, text=True)
-        tail = [l for l in r.stdout.splitlines() if l.strip()][-1:] or ["no output"]
-        log(f"  check: {tail[0].strip()}")
-        for l in r.stdout.splitlines():
-            if "FAIL" in l: log(f"  {l.strip()}")
+        os.makedirs(os.path.dirname(task["out"]), exist_ok=True)
+        open(task["out"], "w").write(text)
+        log(f"{task['id']} ok -> {os.path.basename(task['out'])} ({len(text.split())} words)")
 
+        if task["check"]:
+            cmd = ["python3", f"{REPO}/eval/check_output.py", task["out"]]
+            if task["expect"]: cmd += ["--expect", task["expect"]]
+            r = subprocess.run(cmd, capture_output=True, text=True)
+            tail = [l for l in r.stdout.splitlines() if l.strip()][-1:] or ["no output"]
+            log(f"  check: {tail[0].strip()}")
+            for l in r.stdout.splitlines():
+                if "FAIL" in l: log(f"  {l.strip()}")
+
+log(f"autopilot up, {len(queue)} queued, deadline {DEADLINE:%H:%M}, "
+    f"one worker per profile")
+
+threads = [threading.Thread(target=worker, args=(p,), daemon=True, name=p)
+           for p in PROFILES]
+for t in threads: t.start()
+
+try:
+    while any(t.is_alive() for t in threads) and datetime.now() < DEADLINE:
+        time.sleep(20)
+except KeyboardInterrupt:
+    pass
+stop_ev.set()
 log("deadline reached, autopilot stopping")

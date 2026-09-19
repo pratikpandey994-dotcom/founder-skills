@@ -4,7 +4,7 @@
 # Nothing is pushed anywhere; the ledger is just a file on this machine.
 
 set -u
-REPO=/Users/pratikpandey/Downloads/founder-skills
+REPO=/Users/pratikpandey/founder-skills
 CLAUDE=/Users/pratikpandey/.local/bin/claude
 STAMP=$(date +%Y-%m-%d)
 LOG="$REPO/runs/$STAMP-ideas.md"

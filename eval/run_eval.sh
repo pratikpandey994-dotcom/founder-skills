@@ -8,7 +8,7 @@
 #   CFG=~/.claude ./eval/run_eval.sh   # default profile
 
 set -u
-REPO=/Users/pratikpandey/Downloads/founder-skills
+REPO=/Users/pratikpandey/founder-skills
 CLAUDE=/Users/pratikpandey/.local/bin/claude
 CFG=${CFG:-/Users/pratikpandey/.claude-cla1}
 OUT="$REPO/eval/results/$(date +%Y-%m-%d-%H%M)"
